@@ -45,3 +45,26 @@ with open('day4.in') as f:
       valid += 1
 
   print(valid)
+
+################################### A hackier way to do this ###########################################
+
+import sys
+
+
+keys = [
+    "byr",  # (Birth Year)
+    "iyr",  # (Issue Year)
+    "eyr",  # (Expiration Year)
+    "hgt",  # (Height)
+    "hcl",  # (Hair Color)
+    "ecl",  # (Eye Color)
+    "pid",  # (Passport ID)
+    # "cid", # (Country ID)
+]
+
+with open(sys.argv[1], "r") as f:
+    passports = f.read().split("\n\n")
+
+
+num_keys_valid = sum([all([k in p for k in keys]) for p in passports])
+print(f"Part 1: {num_keys_valid}")
